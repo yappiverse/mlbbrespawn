@@ -1,6 +1,6 @@
 from predictors.predict_linear import LinearPredictor
 from predictors.predict_polynomial import PolynomialPredictor
-import numpy as np
+import threading
 
 def parse_time_to_seconds(time_str):
     """Ubah format MM:SS menjadi total detik"""
@@ -40,16 +40,36 @@ def main():
             print(e)
             continue
 
-        # Prediksi sesuai model yang dipilih
+        # Prediksi
         if choice == "1":
             respawn = linear_pred.predict(hero_lvl, total_detik_mati)
             print(f"Prediksi respawn (Linear): {respawn:.2f} detik")
+
         elif choice == "2":
             respawn = poly_pred.predict(hero_lvl, total_detik_mati)
             print(f"Prediksi respawn (Polynomial): {respawn:.2f} detik")
+
         elif choice == "3":
-            respawn_linear = linear_pred.predict(hero_lvl, total_detik_mati)
-            respawn_poly = poly_pred.predict(hero_lvl, total_detik_mati)
+            respawn_linear = None
+            respawn_poly = None
+
+            # Fungsi prediksi per thread
+            def predict_linear():
+                nonlocal respawn_linear
+                respawn_linear = linear_pred.predict(hero_lvl, total_detik_mati)
+
+            def predict_poly():
+                nonlocal respawn_poly
+                respawn_poly = poly_pred.predict(hero_lvl, total_detik_mati)
+            t1 = threading.Thread(target=predict_linear)
+            t2 = threading.Thread(target=predict_poly)
+
+            t1.start()
+            t2.start()
+
+            t1.join()
+            t2.join()
+
             print(f"Prediksi respawn (Linear): {respawn_linear:.2f} detik")
             print(f"Prediksi respawn (Polynomial): {respawn_poly:.2f} detik")
         else:
