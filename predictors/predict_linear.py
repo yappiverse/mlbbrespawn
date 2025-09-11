@@ -5,7 +5,6 @@ from pathlib import Path
 
 class LinearPredictor(Predictor):
     def __init__(self, model_path=None):
-        # Folder script sebagai acuan
         SCRIPT_DIR = Path(__file__).resolve().parent
         default_path = model_path or (SCRIPT_DIR.parent / "models" / "linear_regression" / "model.pkl")
         super().__init__(default_path)

@@ -1,7 +1,6 @@
 import csv
 from pathlib import Path
 
-# Tentukan folder dan file data
 SCRIPT_DIR = Path(__file__).resolve().parent
 DATA_DIR = SCRIPT_DIR / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -10,7 +9,6 @@ DATA_FILE = DATA_DIR / "data_respawn.csv"
 # Cek apakah file sudah ada
 file_baru = not DATA_FILE.exists()
 
-# Buat file dan header jika baru
 with DATA_FILE.open(mode="a", newline="") as f:
     writer = csv.writer(f)
     if file_baru:

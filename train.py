@@ -26,4 +26,4 @@ elif choice == "3":
     poly_trainer.train()
     poly_trainer.save_model()
 else:
-    print("❌ Pilihan tidak valid! Silakan pilih 1, 2, atau 3.")
+    print("Pilihan tidak valid! Silakan pilih 1, 2, atau 3.")

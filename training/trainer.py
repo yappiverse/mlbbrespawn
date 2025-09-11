@@ -52,4 +52,4 @@ class Trainer(ABC):
     def save_model(self):
         """Simpan model ke file"""
         joblib.dump(self.model, self.model_path)
-        print(f"✅ Model berhasil disimpan di '{self.model_path}'")
+        print(f"Model berhasil disimpan di '{self.model_path}'")

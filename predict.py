@@ -1,6 +1,5 @@
 from predictors.predict_linear import LinearPredictor
 from predictors.predict_polynomial import PolynomialPredictor
-import numpy as np
 
 def parse_time_to_seconds(time_str):
     """Ubah format MM:SS menjadi total detik"""
