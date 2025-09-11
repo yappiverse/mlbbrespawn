@@ -1,3 +1,32 @@
-/.venv
-/training/__pycache__
-/predictors/__pycache__
+# ==========================
+# Virtual Environment
+# ==========================
+.venv/
+venv/
+env/
+
+# ==========================
+# Python Cache
+# ==========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ==========================
+# IDE / Editor
+# ==========================
+# VSCode
+.vscode/
+
+# ==========================
+# Logs / Checkpoints / Temp
+# ==========================
+*.log
+logs/
+*.ckpt
+tmp/
+
+.DS_Store
+
+# Windows
+Thumbs.db
