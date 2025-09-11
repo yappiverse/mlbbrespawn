@@ -1,20 +1,14 @@
-```markdown
 # MLBB Respawn Time Predictor 🕹️⏱️
-
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.2.0-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 Sistem prediksi **lama respawn hero Mobile Legends** menggunakan **Linear Regression** dan **Polynomial Regression**.  
 Data respawn dikumpulkan secara manual, dilatih, dan digunakan untuk prediksi secara interaktif.
-```
 
 ## ⚙️ Instalasi
 
 1. Clone repo:
 
 ```bash
-git clone https://github.com/username/mlbbrespawn.git
+git clone https://github.com/yappiverse/mlbbrespawn.git
 cd mlbbrespawn
 ```
 
