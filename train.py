@@ -1,29 +1,35 @@
+import threading
 from training.train_linear import LinearTrainer
 from training.train_polynomial import PolynomialTrainer
 
+def train_model():
+    print("Pilih model untuk training:")
+    print("1. Linear Regression")
+    print("2. Polynomial Regression")
+    print("3. Keduanya")
+    choice = input("Masukkan pilihan (1/2/3): ")
 
-print("Pilih model yang ingin di-train:")
-print("1. Linear Regression")
-print("2. Polynomial Regression")
-print("3. Keduanya")
+    if choice == "1":
+        trainer = LinearTrainer()
+        trainer.train()
+        trainer.save_model()
+    elif choice == "2":
+        trainer = PolynomialTrainer()
+        trainer.train()
+        trainer.save_model()
+    elif choice == "3":
+        linear_trainer = LinearTrainer()
+        poly_trainer = PolynomialTrainer()
 
-choice = input("Masukkan pilihan (1/2/3): ")
+        # Bisa paralel
+        t1 = threading.Thread(target=lambda: (linear_trainer.train(), linear_trainer.save_model()))
+        t2 = threading.Thread(target=lambda: (poly_trainer.train(), poly_trainer.save_model()))
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+    else:
+        print("Pilihan tidak valid!")
 
-if choice == "1":
-    trainer = LinearTrainer()
-    trainer.train()
-    trainer.save_model()
-elif choice == "2":
-    trainer = PolynomialTrainer()
-    trainer.train()
-    trainer.save_model()
-elif choice == "3":
-    linear_trainer = LinearTrainer()
-    linear_trainer.train()
-    linear_trainer.save_model()
-
-    poly_trainer = PolynomialTrainer()
-    poly_trainer.train()
-    poly_trainer.save_model()
-else:
-    print("Pilihan tidak valid! Silakan pilih 1, 2, atau 3.")
+if __name__ == "__main__":
+    train_model()

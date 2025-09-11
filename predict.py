@@ -3,23 +3,21 @@ from predictors.predict_polynomial import PolynomialPredictor
 import threading
 
 def parse_time_to_seconds(time_str):
-    """Ubah format MM:SS menjadi total detik"""
     try:
         menit, detik = map(int, time_str.split(":"))
         return menit * 60 + detik
     except ValueError:
         raise ValueError("Format salah! Gunakan MM:SS")
 
-def main():
+def predict_respawn():
     print("Pilih model untuk estimasi respawn:")
     print("1. Linear Regression")
     print("2. Polynomial Regression")
     print("3. Keduanya")
     choice = input("Masukkan pilihan (1/2/3): ")
 
-    # Load model SEKALI
-    linear_pred = LinearPredictor() if choice in ["1", "3"] else None
-    poly_pred = PolynomialPredictor() if choice in ["2", "3"] else None
+    linear_pred = LinearPredictor() if choice in ["1","3"] else None
+    poly_pred = PolynomialPredictor() if choice in ["2","3"] else None
 
     while True:
         hero_lvl_str = input("\nMasukkan level hero (atau 'q' untuk selesai): ")
@@ -40,20 +38,16 @@ def main():
             print(e)
             continue
 
-        # Prediksi
         if choice == "1":
             respawn = linear_pred.predict(hero_lvl, total_detik_mati)
             print(f"Prediksi respawn (Linear): {respawn:.2f} detik")
-
         elif choice == "2":
             respawn = poly_pred.predict(hero_lvl, total_detik_mati)
             print(f"Prediksi respawn (Polynomial): {respawn:.2f} detik")
-
         elif choice == "3":
             respawn_linear = None
             respawn_poly = None
 
-            # Fungsi prediksi per thread
             def predict_linear():
                 nonlocal respawn_linear
                 respawn_linear = linear_pred.predict(hero_lvl, total_detik_mati)
@@ -61,12 +55,11 @@ def main():
             def predict_poly():
                 nonlocal respawn_poly
                 respawn_poly = poly_pred.predict(hero_lvl, total_detik_mati)
+
             t1 = threading.Thread(target=predict_linear)
             t2 = threading.Thread(target=predict_poly)
-
             t1.start()
             t2.start()
-
             t1.join()
             t2.join()
 
@@ -76,4 +69,4 @@ def main():
             print("Pilihan tidak valid!")
 
 if __name__ == "__main__":
-    main()
+    predict_respawn()
