@@ -1,0 +1,332 @@
+/* Enhanced color scheme with MLBB theme */
+:root {
+    --primary-blue: #00e5ff;
+    --accent-green: #69f0ae;
+    --warning-red: #ff5252;
+    --background-dark: #121212;
+    --card-dark: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0bec5;
+    --border-light: rgba(255, 255, 255, 0.1);
+    --shadow-primary: rgba(0, 229, 255, 0.3);
+    --shadow-secondary: rgba(105, 240, 174, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--background-dark);
+    color: var(--text-secondary);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Modern glassmorphism container */
+.game-timer-container {
+    background: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Header section */
+.timer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.timer-header h1 {
+    color: var(--primary-blue);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.timer-status {
+    background: var(--accent-green);
+    color: var(--background-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.timer-status.paused {
+    background: var(--warning-red);
+    color: var(--text-primary);
+}
+
+/* Stats panel */
+.stats-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stat-item label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.time-display {
+    color: var(--accent-green);
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+/* Level controls */
+.level-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.level-btn {
+    background: var(--card-dark);
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.level-btn:hover {
+    background: var(--primary-blue);
+    color: var(--background-dark);
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px var(--shadow-primary);
+}
+
+.level-btn:active {
+    transform: scale(0.95);
+}
+
+.level-value {
+    color: var(--accent-green);
+    font-size: 1.8rem;
+    font-weight: bold;
+    min-width: 40px;
+}
+
+/* Respawn panel */
+.respawn-panel {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.respawn-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.respawn-timer {
+    color: var(--warning-red);
+    font-size: 3.5rem;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+    margin: 0.5rem 0;
+}
+
+.respawn-unit {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Progress bar */
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-green));
+    border-radius: 4px;
+    transition: width 1s ease-in-out;
+    width: 0%;
+}
+
+.prediction-badge {
+    background: var(--primary-blue);
+    color: var(--background-dark);
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* Control panel */
+.control-panel {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.control-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.control-btn.primary {
+    background: var(--primary-blue);
+    color: var(--background-dark);
+}
+
+.control-btn.secondary {
+    background: var(--card-dark);
+    color: var(--text-primary);
+    border: 2px solid var(--border-light);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-primary);
+}
+
+.control-btn:active {
+    transform: translateY(0);
+}
+
+.control-btn.primary:hover {
+    box-shadow: 0 8px 25px var(--shadow-primary);
+}
+
+.control-btn.secondary:hover {
+    box-shadow: 0 8px 25px var(--shadow-secondary);
+}
+
+/* Keyboard hint */
+.keyboard-hint {
+    margin-top: auto;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.keyboard-hint p {
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .game-timer-container {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+
+    .timer-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .stats-panel {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .respawn-timer {
+        font-size: 2.8rem;
+    }
+
+    .control-panel {
+        flex-direction: column;
+    }
+
+    .control-btn {
+        min-width: auto;
+    }
+}
+
+/* Animation classes */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}

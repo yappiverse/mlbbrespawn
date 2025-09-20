@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Polynomial Predictor Test</title>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1>Polynomial Predictor Test</h1>
+    <div id="testResults"></div>
+
+    <script>
+      // Test the PolynomialPredictor
+      const predictor = new PolynomialPredictor(modelData);
+
+      // Test cases
+      const testCases = [
+        { level: 6, time: 221, expected: "~37" },
+        { level: 12, time: 765, expected: "~25" },
+        { level: 1, time: 60, expected: "~5" },
+        { level: 15, time: 900, expected: "~20" },
+      ];
+
+      let results = "<h2>Test Results:</h2><ul>";
+
+      testCases.forEach((test, index) => {
+        const prediction = predictor.predict(test.level, test.time);
+        results += `
+                <li>
+                    Level ${test.level}, Time ${test.time}s → 
+                    Predicted: ${prediction.toFixed(2)}s 
+                    (Expected: ${test.expected})
+                </li>
+            `;
+      });
+
+      results += "</ul>";
+      document.getElementById("testResults").innerHTML = results;
+
+      console.log("Polynomial Predictor Test Complete");
+    </script>
+  </body>
+</html>

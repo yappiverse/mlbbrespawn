@@ -1,3 +1,4 @@
+import json
 from .trainer import Trainer
 import joblib
 from sklearn.linear_model import LinearRegression
@@ -67,4 +68,18 @@ class PolynomialTrainer(Trainer):
         poly_path = self.model_dir / "transformer.pkl"
         joblib.dump(self.poly, poly_path)
         joblib.dump(self.model, self.model_path)
-        print(f"✅ Polynomial Regression model dan transformer berhasil disimpan di '{self.model_dir}'")
+
+        model_json = {
+            "degree": self.degree,
+            "coefficients": self.model.coef_.tolist(),
+            "intercept": float(self.model.intercept_),
+            "feature_names": (
+                self.poly.get_feature_names_out().tolist() if self.poly else None
+            ),
+        }
+
+        json_path = self.model_dir / "model.json"
+        with open(json_path, "w") as f:
+            json.dump(model_json, f, indent=4)
+
+        print(f"✅ Polynomial Regression model berhasil disimpan di '{self.model_dir}' (pkl & json)")

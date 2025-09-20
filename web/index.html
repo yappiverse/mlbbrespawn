@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MLBB Respawn Timer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-timer-container">
+      <header class="timer-header">
+        <h1>MLBB RESPAWN TIMER</h1>
+        <div class="timer-status" id="timerStatus">▶ PLAYING</div>
+      </header>
+
+      <div class="stats-panel">
+        <div class="stat-item">
+          <label>GAME TIME</label>
+          <div class="time-display" id="gameTime">12:45</div>
+        </div>
+
+        <div class="stat-item">
+          <label>HERO LEVEL</label>
+          <div class="level-controls">
+            <button class="level-btn decrease" id="decreaseLevel">◀</button>
+            <span class="level-value" id="heroLevel">12</span>
+            <button class="level-btn increase" id="increaseLevel">▶</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="respawn-panel">
+        <div class="respawn-label">RESPAWN IN</div>
+        <div class="respawn-timer" id="respawnTimer">37</div>
+        <div class="respawn-unit">seconds</div>
+        <!-- <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div> -->
+        <div class="prediction-badge">ML PREDICTION</div>
+      </div>
+
+      <div class="control-panel">
+        <button class="control-btn primary" id="toggleTimer">⏸ PAUSE</button>
+        <button class="control-btn secondary" id="resetTimer">↺ RESET</button>
+      </div>
+
+      <div class="keyboard-hint">
+        <p>⌨️ Keyboard: ←/→ Level | Space Play/Pause | R Reset</p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
